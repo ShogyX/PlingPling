@@ -1,0 +1,13 @@
+TO DO:
+
+- add logic to decide if custom_input is included/excluded from production list
+
+- clean up code
+
+- add time status and word estimation
+
+- add option for word_premutation of entire base_list
+
+- add logic for word_permutation to be excluded/included in production list
+
+- write documentation
