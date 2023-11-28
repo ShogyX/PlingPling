@@ -1,0 +1,2 @@
+# PlingPling
+Custom Wordlist Generator
