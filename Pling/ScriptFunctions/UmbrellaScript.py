@@ -1,10 +1,10 @@
-from .caps_handler import handle_capitalization
-from .custom_input_handler import handle_custom_input
-from .date_handler import handle_dates
-from .number_handler import handle_number_combos
-from .word_permutation_handler import handle_word_permutations
-from .leet_handler import handle_leet
-from .special_char_handler import handle_special_char
+from .CapsFunction import handle_capitalization
+from .CustomInputFunction import handle_custom_input
+from .DateFunction import handle_dates
+from .NumberListsFunction import handle_number_combos
+from .WordPemutationFunction import handle_word_permutations
+from .LeetFunction import handle_leet
+from .SpecialCharFunction import handle_special_char
 import os
 from colorama import Fore, Style
 

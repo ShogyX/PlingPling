@@ -1,5 +1,5 @@
 from itertools import permutations, combinations, product
-from .caps_handler import handle_capitalization
+from .CapsFunction import handle_capitalization
 
 def all_permutations_func(input_list):
     return [list(permutation) for permutation in permutations(input_list)]

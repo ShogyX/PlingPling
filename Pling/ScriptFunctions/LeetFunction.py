@@ -1,4 +1,4 @@
-from .leet_rules import get_leet_presets, get_single_leet_rule
+from .LeetRules import get_leet_presets, get_single_leet_rule
 from itertools import product
 
 def generate_leet_combinations(word, leet_dict, include_chars=None, exclude_chars=None):

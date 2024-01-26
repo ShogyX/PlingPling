@@ -1,10 +1,10 @@
-from sub_scripts.backend import recieve_command
+from ScriptFunctions.UmbrellaScript import recieve_command
 import os
 import sys
 from colorama import Fore, Style
 import json
 
-def edit_command_preset(preset_name, new_command, file_path="all_presets.json"):
+def edit_command_preset(preset_name, new_command, file_path="/Presets/all_presets.json"):
     try:
         # Read the command presets from the JSON file
         with open(file_path, 'r') as preset_file:
@@ -24,7 +24,7 @@ def edit_command_preset(preset_name, new_command, file_path="all_presets.json"):
     except (FileNotFoundError, json.JSONDecodeError):
         print(f"Error: Unable to load command presets from '{file_path}'.")
 
-def delete_command_preset(preset_name, file_path="all_presets.json"):
+def delete_command_preset(preset_name, file_path="/Presets/all_presets.json"):
     try:
         # Read the command presets from the JSON file
         with open(file_path, 'r') as preset_file:
@@ -44,7 +44,7 @@ def delete_command_preset(preset_name, file_path="all_presets.json"):
     except (FileNotFoundError, json.JSONDecodeError):
         print(f"Error: Unable to load command presets from '{file_path}'.")
 
-def load_command_preset(command_preset_name, file_path="all_presets.json"):
+def load_command_preset(command_preset_name, file_path="/Presets/all_presets.json"):
     try:
         # Read the command presets from the JSON file
         with open(file_path, 'r') as preset_file:
@@ -58,7 +58,7 @@ def load_command_preset(command_preset_name, file_path="all_presets.json"):
 
     return command
 
-def print_command_presets(file_path="all_presets.json"):
+def print_command_presets(file_path="/Presets/all_presets.json"):
     try:
         # Read the command presets from the JSON file
         with open(file_path, 'r') as preset_file:
@@ -71,7 +71,7 @@ def print_command_presets(file_path="all_presets.json"):
     except (FileNotFoundError, json.JSONDecodeError):
         print(f"Error: Unable to load command presets from '{file_path}'.")
 
-def save_command_preset(command_preset, command_preset_name, file_path="all_presets.json"):
+def save_command_preset(command_preset, command_preset_name, file_path="/Presets/all_presets.json"):
     # Validate the command (add your validation logic here)
     if not command_preset:
         print("Warning: Empty command. The command preset may not be valid.")

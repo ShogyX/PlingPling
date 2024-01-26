@@ -191,7 +191,7 @@ def map_variable_to_string(variable):
 
 def handle_number_combos(wordlist, command_string):
     result_list = []
-    path = "NUMBER_COMBOS\\"
+    path = "NumberLists\\"
     for option in command_string.split("$"):
         if len(option) < 1:
             continue
