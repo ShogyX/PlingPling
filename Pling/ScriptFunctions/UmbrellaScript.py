@@ -9,7 +9,7 @@ import os
 from colorama import Fore, Style
 
 
-def save_list_to_file(my_list, file_path="wordlist_ouput/"):
+def save_list_to_file(my_list, file_path="DefaultOutput/"):
     try:
         # Check if the file path has a .txt extension
         if file_path.lower().endswith('.txt'):
@@ -96,12 +96,12 @@ def recieve_command(command_string, wordlist=None, custom_wordlist=None, outpath
             return("No Wordlist Specified!")
         else:
             command_info["wordlist"] = wordlist
-    if "ci" not in command_info and "custom_input" not in command_info:
+    if "ci" not in command_info and "custominput" not in command_info:
         if custom_wordlist == None:
             pass
         else:
             command_info["ci"] = "&f="+custom_wordlist
-    if "op" not in command_info and "out_path" not in command_info:
+    if "op" not in command_info and "outpath" not in command_info:
         if outpath == None:
             pass
         else:
@@ -132,9 +132,9 @@ def create_list(params_dict):
         production_list.extend(read_files_as_list(wordlist))
         
 
-    if 'wp' in commands or "word_permutation" in commands:
+    if 'wp' in commands or "wordpermutation" in commands:
         try:
-            wp_option = params_dict.get("wp") or params_dict.get("word_permutation")
+            wp_option = params_dict.get("wp") or params_dict.get("wordpermutation")
         except KeyError:
             wp_option = None
 
@@ -144,29 +144,29 @@ def create_list(params_dict):
             
             production_list.extend(handle_word_permutations(production_list))
         
-    if "lm" in commands or "leet_mode" in commands:
+    if "lm" in commands or "leetmode" in commands:
         try:
-            lm_option = params_dict.get("lm") or params_dict.get("leet_mode")
+            lm_option = params_dict.get("lm") or params_dict.get("leetmode")
         except KeyError:
             lm_option = None
 
         production_list.extend(handle_leet(production_list, lm_option))
 
-    if 'rw' in commands or "reverse_words" in commands:
+    if 'rw' in commands or "reversewords" in commands:
         production_list.extend(reverse_words_in_list(production_list))
 
-    if 'wc' in commands or "word_capitalization" in commands:
+    if 'wc' in commands or "wordcapitalization" in commands:
         try:
-            caps_option = params_dict.get("wc") or params_dict.get("word_capitalization")
+            caps_option = params_dict.get("wc") or params_dict.get("wordcapitalization")
         except KeyError:
             caps_option = None
 
         production_list.extend(handle_capitalization(production_list, caps_option))
         
 
-    if 'ci' in commands or "custom_input" in commands:
+    if 'ci' in commands or "custominput" in commands:
         try:
-            custom_option = params_dict.get("ci") or params_dict.get("custom_input")
+            custom_option = params_dict.get("ci") or params_dict.get("custominput")
             custom_option = custom_option
         except KeyError:
             custom_option = None
@@ -174,25 +174,25 @@ def create_list(params_dict):
         final_list.extend(handle_custom_input(production_list, custom_option))
         total_words_in_final_list = len(final_list)
 
-    if 'gd' in commands or "generate_dates" in commands:
+    if 'gd' in commands or "generatedates" in commands:
         try:
-            date_option = params_dict.get("gd") or params_dict.get("generate_dates")
+            date_option = params_dict.get("gd") or params_dict.get("generatedates")
         except KeyError:
             date_option = None
 
         final_list.extend(handle_dates(production_list, date_option))
     
-    if 'sc' in commands or "special_character" in commands:
+    if 'sc' in commands or "specialcharacter" in commands:
         try:
-            sc_option = params_dict.get("sc") or params_dict.get("special_character")
+            sc_option = params_dict.get("sc") or params_dict.get("specialcharacter")
         except KeyError:
             sc_option = None
 
         final_list.extend(handle_special_char(production_list, sc_option))
 
-    if 'nl' in commands or "number_lists" in commands:
+    if 'nl' in commands or "numberlists" in commands:
         try:
-            num_option = params_dict.get("nl") or params_dict.get("number_lists")
+            num_option = params_dict.get("nl") or params_dict.get("numberlists")
         except KeyError:
             num_option = None
 
@@ -201,9 +201,9 @@ def create_list(params_dict):
 
     complete_list = production_list + final_list
     complete_list = list(set(complete_list))
-    if 'op' in commands or "out_path" in commands:
+    if 'op' in commands or "outpath" in commands:
         try:
-            op_option = params_dict.get("op") or params_dict.get("out_path")
+            op_option = params_dict.get("op") or params_dict.get("outpath")
         except KeyError:
             op_option = None
 

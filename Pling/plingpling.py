@@ -166,8 +166,8 @@ def main():
 | /_/   /_/_/_/ /_/\__, /  /_/   /_/_/_/ /_/\__, /    |
 |                 /____/                   /____/     |
 +-----------------------------------------------------+
-Created by Shogy   |   Twitter: [Twitter Link]
-                   |   Github:  [Github Link]
+  Created by [creator]   |   Twitter: [Twitter Link]
+                         |   Github:  [Github Link]
 
 Type 'help' for instructions.
 """
