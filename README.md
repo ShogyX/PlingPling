@@ -83,11 +83,12 @@ Commands in this section will connotate words, numbers or characters to words in
 - Description: Enable number lists mode. PlingPling will append specific number patterns to words in base wordlist based on requested patterns.
 - Example: `-nl [Options]`
 
-## Production Pipeline
-### <img align="Right" width="540" height="862" src="Documentation/Diagram view of production pipeline.png">
+## Production Pipeline Order
+### <img align="Right" width="520" height="862" src="Documentation/Diagram view of production pipeline.png">
 
 - The image presented outlines the priority of commands in the production pipeline of the script.
 - As of 26.01.2024 there is no way of changing the order in which commands are prioritized. 
-- The script will 
-- 
+- The order is the sequence in which the script will generate new words. 
+- All new variations are added back to the production list and used by the next script option to generate new words.
+- An example of this is whould be using a Base list with the leet option and reverse word option. The script will use the base list and generate leet verisions of each word, it will then add those words to the production list which already consists of the base list. The reverse words option will use the entire production list which consists of the base words and leet words, and create reversed versions of these words and add it back to the production list.
 
