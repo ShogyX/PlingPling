@@ -6,7 +6,7 @@
 Written in Python, PlingPling is a dictionary generator meant to be used after collecting information about a target. Inteded to produce dictionaries for potential email, username or password enumeration. The script supports various ways of transforming and generating new words from a base wordlist, with a highly customizable options to produce broad and/or precise dictionaries for effective use in enumeration/bruteforcing.
 
 ### Important
-- Suppporting many different means of transformation and connotation the user is highly encouraged to only use options deemed likely to help in enumeration/bruteforcing as the words in the dictionary can quickly exceed 100 million with multiple options in use. 
+- Suppporting many different means of transformation and connotation the user is highly encouraged to only use options deemed likely to help in enumeration/bruteforcing. Words in the dictionary can quickly exceed 100 million with multiple options in use. 
 - The user is encouraged to view any precompiled list in order to understand what list is the best fit for their use case.
 - Any custom list input should only have 1 word per line.
 - Note that use of multiple lists may result in small amounts of duplication as lists may contain some identicle words/numbers.
@@ -15,6 +15,7 @@ Written in Python, PlingPling is a dictionary generator meant to be used after c
 - The user is highly encouraged to view the diagram outlining the production pipeline of the script in order to better understand how the dictionary is built and how commands interact with eachother. 
 
 ## Output & Input
+Commands in this section handle the input of the base wordlist and the output path of the finished dictionary.
 
 ### Wordlist
 - Short: -wl
@@ -29,7 +30,7 @@ Written in Python, PlingPling is a dictionary generator meant to be used after c
 - Example: `-op [Path To Wordlist]`
 
 ## Transformative Commands
-Commands in this section will generate new transformed versions of words lin the base word list.
+Commands in this section will generate new transformed versions of words in the base word list.
 
 ### LeetMode
 - Short: -lm
@@ -73,11 +74,19 @@ Commands in this section will connotate words, numbers or characters to words in
 ### SpecialCharacter
 - Short: -sc
 - Long: -SpecialCharacter
-- Description: Enable special character mode. PlingPling will connotate various special characters to the word in the base worlist based on specified rules.
+- Description: Enable special character mode. PlingPling will connotate various special characters to the words in the base worlist based on specified rules.
 - Example: `-sc [Options]`
 
 ### NumberLists
 - Short: -nl
 - Long: -NumberLists
-- Description: Enable number lists mode. PlingPling will append specific number patterns to word in base wordlist based on requested patterns.
+- Description: Enable number lists mode. PlingPling will append specific number patterns to words in base wordlist based on requested patterns.
 - Example: `-nl [Options]`
+
+## Production Pipeline
+### <img align="Right" width="320" height="900" src="Diagram view of production pipeline.png">
+- t
+- t
+- t
+- t 
+

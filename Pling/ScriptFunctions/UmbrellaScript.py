@@ -131,7 +131,6 @@ def create_list(params_dict):
         
         production_list.extend(read_files_as_list(wordlist))
         
-
     if 'wp' in commands or "wordpermutation" in commands:
         try:
             wp_option = params_dict.get("wp") or params_dict.get("wordpermutation")
@@ -163,7 +162,6 @@ def create_list(params_dict):
 
         production_list.extend(handle_capitalization(production_list, caps_option))
         
-
     if 'ci' in commands or "custominput" in commands:
         try:
             custom_option = params_dict.get("ci") or params_dict.get("custominput")
