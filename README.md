@@ -85,6 +85,7 @@ Commands in this section will connotate words, numbers or characters to words in
 
 ## Production Pipeline
 ### <img align="Right" width="540" height="862" src="Documentation/Diagram view of production pipeline.png">
+
 - The image presented outlines the priority of commands in the production pipeline of the script.
 - As of 26.01.2024 there is no way of changing the order in which commands are prioritized. 
 - The script will 
