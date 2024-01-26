@@ -6,13 +6,18 @@
 Written in Python, PlingPling is a dictionary generator meant to be used after collecting information about a target. Inteded to produce dictionaries for potential email, username or password enumeration. The script supports various ways of transforming and generating new words from a base wordlist, with a highly customizable options to produce broad and/or precise dictionaries for effective use in enumeration/bruteforcing.
 
 ### Important
-- Suppporting many different means of transformation and connotation the user is highly encouraged to only use options deemed likely to help in enumeration/bruteforcing. Words in the dictionary can quickly exceed 100 million with multiple options in use. 
-- The user is encouraged to view any precompiled list in order to understand what list is the best fit for their use case.
+- Using all/many options with large base lists may take time to finish and produce dictionaries exceeding 100 million words. 
+- Number lists are precompiled in .txt files under the NumberLists folder. The CUSTOM.txt file can be used to add custom number lists, use $CUSTOM to refrence it in the commandline.
 - Any custom list input should only have 1 word per line.
-- Note that use of multiple lists may result in small amounts of duplication as lists may contain some identicle words/numbers.
-- Multi option commands may become quite lengthy, the user is encouraged to save queries in the presets folder for easy future use.
-- Commands are case insensitive but written with caps in the documentation for better readability.
-- The user is highly encouraged to view the diagram outlining the production pipeline of the script in order to better understand how the dictionary is built and how commands interact with eachother. 
+- Use of multiple lists may result in small amounts of duplication as lists may contain some identicle words/numbers.
+- The interactive command line interface allows you to save presets of multiple commands for quick use in the future.
+- Commands are not case sensitive but written with caps in the documentation for better readability.
+- The sequence of commands affects the final ouput. See the section below for more info.
+
+## Production Order
+
+The order in which commands are enteret into the script will have an impact upon the final dictionary. The way the script processes commands and generate words is sequential.Meaning all new variations are added back to the production list and used by the next script option to generate new words. An example of this is would be using a "base list" with the leet option and reverse word option. The script will use the base list and generate leet verisions of each word, it will then add those words to the production list which already consists of the base list. The reverse words option will use the entire production list which consists of the base words and leet words, and create reversed versions of these words and add it back to the production list. The only exceptions from this are the -wl and -op commands, their execution will always be first and last.
+
 
 ## Output & Input
 Commands in this section handle the input of the base wordlist and the output path of the finished dictionary.
@@ -83,12 +88,6 @@ Commands in this section will connotate words, numbers or characters to words in
 - Description: Enable number lists mode. PlingPling will append specific number patterns to words in base wordlist based on requested patterns.
 - Example: `-nl [Options]`
 
-## Production Pipeline Order
-### <img align="Right" width="520" height="862" src="Documentation/Diagram view of production pipeline.png">
 
-- The image presented outlines the priority of commands in the production pipeline of the script.
-- As of 26.01.2024 there is no way of changing the order in which commands are prioritized. 
-- The order is the sequence in which the script will generate new words. 
-- All new variations are added back to the production list and used by the next script option to generate new words.
-- An example of this is whould be using a Base list with the leet option and reverse word option. The script will use the base list and generate leet verisions of each word, it will then add those words to the production list which already consists of the base list. The reverse words option will use the entire production list which consists of the base words and leet words, and create reversed versions of these words and add it back to the production list.
+
 

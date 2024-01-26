@@ -110,7 +110,7 @@ def recieve_command(command_string, wordlist=None, custom_wordlist=None, outpath
     return info
 
 def create_list(params_dict):
-    commands = params_dict.keys()
+    commands_dict = params_dict.keys()
 
     production_list = []
     final_list = []
@@ -120,86 +120,87 @@ def create_list(params_dict):
     file_saved_at = ""
     total_words_in_final_list = 0
     used_wordlist = ""
-    
-
-    if 'wl' in commands or "wordlist" in commands:
+    if 'wl' in commands_dict or "wordlist" in commands_dict:
         try:
             wordlist = params_dict.get("wl") or params_dict.get("wordlist")
             used_wordlist = wordlist
         except KeyError:
             raise ValueError("Did Not Find A Wordlist")
-        
         production_list.extend(read_files_as_list(wordlist))
-        
-    if 'wp' in commands or "wordpermutation" in commands:
-        try:
-            wp_option = params_dict.get("wp") or params_dict.get("wordpermutation")
-        except KeyError:
-            wp_option = None
+    else:
+        raise ValueError("No wordlist provided, aborted production!")
+    for commands in list(commands_dict):
 
-        if wp_option and len(wp_option) > 1:
-            production_list.extend(handle_word_permutations(production_list, wp_option))
-        else:
+ 
+        if 'wp' == commands or "wordpermutation" == commands:
+            try:
+                wp_option = params_dict.get("wp") or params_dict.get("wordpermutation")
+            except KeyError:
+                wp_option = None
+
+            if wp_option and len(wp_option) > 1:
+                production_list.extend(handle_word_permutations(production_list, wp_option))
+            else:
+                
+                production_list.extend(handle_word_permutations(production_list))
             
-            production_list.extend(handle_word_permutations(production_list))
+        elif "lm" == commands or "leetmode" == commands:
+            try:
+                lm_option = params_dict.get("lm") or params_dict.get("leetmode")
+            except KeyError:
+                lm_option = None
+
+            production_list.extend(handle_leet(production_list, lm_option))
+
+        elif 'rw' == commands or "reversewords" == commands:
+            production_list.extend(reverse_words_in_list(production_list))
+
+        elif 'wc' == commands or "wordcapitalization" == commands:
+            try:
+                caps_option = params_dict.get("wc") or params_dict.get("wordcapitalization")
+            except KeyError:
+                caps_option = None
+
+            production_list.extend(handle_capitalization(production_list, caps_option))
+            
+        elif 'ci' == commands or "custominput" == commands:
+            try:
+                custom_option = params_dict.get("ci") or params_dict.get("custominput")
+                custom_option = custom_option
+            except KeyError:
+                custom_option = None
+
+            final_list.extend(handle_custom_input(production_list, custom_option))
+            total_words_in_final_list = len(final_list)
+
+        elif 'gd' == commands or "generatedates" == commands:
+            try:
+                date_option = params_dict.get("gd") or params_dict.get("generatedates")
+            except KeyError:
+                date_option = None
+
+            final_list.extend(handle_dates(production_list, date_option))
         
-    if "lm" in commands or "leetmode" in commands:
-        try:
-            lm_option = params_dict.get("lm") or params_dict.get("leetmode")
-        except KeyError:
-            lm_option = None
+        elif 'sc' == commands or "specialcharacter" == commands:
+            try:
+                sc_option = params_dict.get("sc") or params_dict.get("specialcharacter")
+            except KeyError:
+                sc_option = None
 
-        production_list.extend(handle_leet(production_list, lm_option))
+            final_list.extend(handle_special_char(production_list, sc_option))
 
-    if 'rw' in commands or "reversewords" in commands:
-        production_list.extend(reverse_words_in_list(production_list))
+        elif 'nl' == commands or "numberlists" == commands:
+            try:
+                num_option = params_dict.get("nl") or params_dict.get("numberlists")
+            except KeyError:
+                num_option = None
 
-    if 'wc' in commands or "wordcapitalization" in commands:
-        try:
-            caps_option = params_dict.get("wc") or params_dict.get("wordcapitalization")
-        except KeyError:
-            caps_option = None
-
-        production_list.extend(handle_capitalization(production_list, caps_option))
-        
-    if 'ci' in commands or "custominput" in commands:
-        try:
-            custom_option = params_dict.get("ci") or params_dict.get("custominput")
-            custom_option = custom_option
-        except KeyError:
-            custom_option = None
-
-        final_list.extend(handle_custom_input(production_list, custom_option))
-        total_words_in_final_list = len(final_list)
-
-    if 'gd' in commands or "generatedates" in commands:
-        try:
-            date_option = params_dict.get("gd") or params_dict.get("generatedates")
-        except KeyError:
-            date_option = None
-
-        final_list.extend(handle_dates(production_list, date_option))
-    
-    if 'sc' in commands or "specialcharacter" in commands:
-        try:
-            sc_option = params_dict.get("sc") or params_dict.get("specialcharacter")
-        except KeyError:
-            sc_option = None
-
-        final_list.extend(handle_special_char(production_list, sc_option))
-
-    if 'nl' in commands or "numberlists" in commands:
-        try:
-            num_option = params_dict.get("nl") or params_dict.get("numberlists")
-        except KeyError:
-            num_option = None
-
-        final_list.extend(handle_number_combos(production_list, num_option))
-        
+            final_list.extend(handle_number_combos(production_list, num_option))
+            
 
     complete_list = production_list + final_list
     complete_list = list(set(complete_list))
-    if 'op' in commands or "outpath" in commands:
+    if 'op' in commands_dict or "outpath" in commands_dict:
         try:
             op_option = params_dict.get("op") or params_dict.get("outpath")
         except KeyError:
