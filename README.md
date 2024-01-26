@@ -84,7 +84,7 @@ Commands in this section will connotate words, numbers or characters to words in
 - Example: `-nl [Options]`
 
 ## Production Pipeline
-### <img align="Right" width="320" height="900" src="Diagram view of production pipeline.png">
+### <img align="Right" width="320" height="900" src="Documentation/Diagram view of production pipeline.png">
 - t
 - t
 - t
