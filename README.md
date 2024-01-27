@@ -13,7 +13,7 @@ Written in Python, PlingPling is a dictionary generator meant to be used after c
 - The interactive command line interface allows you to save presets of multiple commands for quick use in the future.
 - Commands are not case sensitive but written with caps in the documentation for better readability.
 - The sequence of commands affects the final ouput. See the section below for more info.
-- Paths must be passed as dir/dir/file or dir\\dir\\file. Normals windows paths will cause the script to break. 
+- Paths must be passed as /dir/dir/file or dir\\dir\\file. Normals windows paths will cause the script to break. 
 
 
 ## Production Order
@@ -104,7 +104,13 @@ Commands in this section will connotate words, numbers or characters to words in
 - Short: -CI
 - Long: -CustomInput
 - Description: Allows you to provide a custom list of words. PlingPling will connotate these words to words in the production list and apply transformations as specified.
-- Example: `-ci [Path To Wordlist][Other options]`
+- Example: `-ci [Path To Wordlist(s)][Other options]`
+    #### Required Option
+    - Short: &f=
+    - Long: &file=
+    - Description: Specify the path(s) to your custom input .txt file(s). In order to select multiple files separate each path by a ','.
+    - Example: `-ci &file=/home/user/file.txt,/home/user/file_2.txt`
+- Available Options: **Position**, **Recursion**
 
 ### GenerateDates
 - Short: -GD
@@ -148,7 +154,7 @@ Commands in this section will connotate words, numbers or characters to words in
 - Available Options: **Position**, **Recursion**, **limit**
 
 ## Command Options
-The following section contains the way to pass paramaters and rules to the above mentioned commands in order to make a precise and accurate dictionary.
+The following section provide an introduction in how to use customizing options for the scripts commands.
 
 ### Position
 - Short: &p=
@@ -181,6 +187,11 @@ The following section contains the way to pass paramaters and rules to the above
 - Description: Allows the user to specify certain characters to be excluded from the scripts operation.
 - Example: `-lm &blacklist=!#%&£$`
 
+
+## Sample Commands
+This Section contains various ways of chaining multiple commands together along with different options.
+
+- **All Commands:** `-WL /home/dir/file.txt -WP &Caps=$5$2$1&RW -CI &file=/home/dir/custom.txt&p=3&re -WC $1$2$3$4$5$6$7$8 -RW -LM &Dict=1&Whitelist=!?@£# -GD &f=DDMMYYYYR2020:2024&p=2 -SC &p=3&l=5&recursion -NL $1$2$3:p=3&re$4$5:p=2$6:l=4 -OP /home/user/output/`
 
 
 
