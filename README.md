@@ -2,8 +2,9 @@
 
 ## General
 
+
 ### Introduction
-Written in Python, PlingPling is a dictionary generator meant to be used after collecting information about a target. Inteded to produce dictionaries for potential email, username or password enumeration. The script supports various ways of transforming and generating new words from a base wordlist, with a highly customizable options to produce broad and/or precise dictionaries for effective use in enumeration/bruteforcing.
+Written in Python, PlingPling is a dictionary generator meant to be used after collecting information about a target. Inteded to produce dictionaries for potential email, username or password bruteforcing. The script supports various ways of transforming and generating new words from a base wordlist, with highly customizable options to produce broad and precise dictionaries for effective use in bruteforcing.
 
 ### Important
 - Using all/many options with large base lists may take time to finish and produce dictionaries exceeding 100 million words. 
@@ -13,7 +14,8 @@ Written in Python, PlingPling is a dictionary generator meant to be used after c
 - The interactive command line interface allows you to save presets of multiple commands for quick use in the future.
 - Commands are not case sensitive but written with caps in the documentation for better readability.
 - The sequence of commands affects the final ouput. See the section below for more info.
-- The script will accept path in both windows and linux format, but we recommend linux format as the windows path style may result in unforseen abortion of the script due to the nature of python parsing `\` as a signal for escaping a character.
+- Paths must be passed as dir/dir/file or dir\\dir\\file. Normals windows paths will cause the script to break. 
+
 
 ## Production Order
 
@@ -47,8 +49,8 @@ Commands in this section will generate new transformed versions of words in the 
 ### ReverseWords
 - Short: -rw
 - Long: -ReverseWords
-- Description: Enable word reversal. PlingPling will add reversed versions of words in the production list to the production list.
-- Example: `-rw [Options]`
+- Description: Enable word reversal. PlingPling will add reversed versions of words in the production list to the production list. This command takes no arguments.
+- Example: `-rw`
 
 ### WordCapitalization
 - Short: -wc
@@ -58,15 +60,15 @@ Commands in this section will generate new transformed versions of words in the 
     #### Required Option
     - Short: $[Preset]
     - Long: $[Preset]
-    - Description: Specify the desired capitalization patterns to be used. The script current presets available are:
-    - [$1] - SAMPLE 
-    - [$2] - Sample 
-    - [$3] - saMPle 
-    - [$4] - samplE 
-    - [$5] - sAMPLe 
-    - [$6] - sAMPLE 
-    - [$7] - SAMPle 
-    - [$8] - SamplE 
+    - Description: Specify the desired capitalization patterns to be used. The current presets available are the following:
+    - [$1] - SAMPLE - All Caps
+    - [$2] - Sample - First letter Caps
+    - [$3] - saMPle - Middle letter(s) Caps
+    - [$4] - samplE - Last letter Caps
+    - [$5] - sAMPLe - All letters except first and last
+    - [$6] - sAMPLE - All letters except first
+    - [$7] - SAMPle - All letters except last
+    - [$8] - SamplE - First and Last only
     - Example: `-wc $1$2$3$4`
 
 
@@ -146,3 +148,13 @@ The following section contains the way to pass paramaters and rules to the above
 - Example: `-gd &format=YYR10&limit=5`
 
 ### 
+
+
+
+
+
+
+
+
+
+#### Last Updated 27.01.2024
