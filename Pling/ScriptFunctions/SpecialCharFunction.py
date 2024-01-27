@@ -71,7 +71,7 @@ def handle_special_char(wordlist, option):
     else:
         position = '2'
 
-    if "mv" in params or "multi_variation" in params:
+    if "re" in params or "recursion" in params:
         mv = True
     else:
         mv = False

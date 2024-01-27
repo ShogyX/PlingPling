@@ -44,11 +44,11 @@ def handle_leet(input_list, input_string):
     e = True
     i = True
     # Process the list based on the parameters and values
-    if "p" in params or "preset" in params:
+    if "ru" in params or "rules" in params:
         try:
-            preset = params["p"]
+            preset = params["ru"]
         except:
-            preset = params["preset"]
+            preset = params["rules"]
         preset = get_leet_presets(preset)
         leet_dict.update(preset)
     

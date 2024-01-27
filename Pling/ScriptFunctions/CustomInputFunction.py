@@ -181,19 +181,8 @@ def process_commands(commands_string, base_list):
     else:
         position_setting = False
 
-    if 'multi_variation' in commands_info or 'mv' in commands_info:
-        try:
-            multi_variation_value = commands_info['mv']
-            if multi_variation_value == "True" or multi_variation_value == "T" or multi_variation_value == "t":
-                mv = True
-            else:
-                mv = False
-        except:
-            multi_variation_value = commands_info['multi_variation']
-            if multi_variation_value == "True" or multi_variation_value == "T" or multi_variation_value == "t":
-                mv = True
-            else:
-                mv = False
+    if 'recursion' in commands_info or 're' in commands_info:
+        mv = True
     else:
         mv = False
         

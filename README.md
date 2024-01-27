@@ -1,4 +1,4 @@
-# PlingPling - Python Dictionary Generator
+# PlingPling - Dictionary Generator
 
 ## General
 
@@ -13,6 +13,7 @@ Written in Python, PlingPling is a dictionary generator meant to be used after c
 - The interactive command line interface allows you to save presets of multiple commands for quick use in the future.
 - Commands are not case sensitive but written with caps in the documentation for better readability.
 - The sequence of commands affects the final ouput. See the section below for more info.
+- The script will accept path in both windows and linux format, but we recommend linux format as the windows path style may result in unforseen abortion of the script due to the nature of python parsing `\` as a signal for escaping a character.
 
 ## Production Order
 
@@ -35,59 +36,113 @@ Commands in this section handle the input of the base wordlist and the output pa
 - Example: `-op [Path To Wordlist]`
 
 ## Transformative Commands
-Commands in this section will generate new transformed versions of words in the base word list.
+Commands in this section will generate new transformed versions of words in the base wordlist and/or production list.
 
 ### LeetMode
 - Short: -lm
 - Long: -LeetMode
-- Description: Enables leet mode PlingPling will generate additional versions of words with leet transformations based on the specified leet rules.
+- Description: Enables leet mode PlingPling will generate leet versions of words in the production list, and add them back to the production list.
 - Example: `-lm [Options]`
 
 ### ReverseWords
 - Short: -rw
 - Long: -ReverseWords
-- Description: Enable word reversal. PlingPling will add reversed versions of words to the output dictionary.
+- Description: Enable word reversal. PlingPling will add reversed versions of words in the production list to the production list.
 - Example: `-rw [Options]`
 
 ### WordCapitalization
 - Short: -wc
 - Long: -WordCapitalization
-- Description: Enable word capitalization mode. PlingPling will generate variations of words with different capitalization patterns based on requested patterns.
-- Example: `-wc [Options]`
+- Description: Enable word capitalization mode. PlingPling will generate variations of words in the production list with different capitalization patterns based on requested patterns.
+- Example: `-wc $[Presets]`
+    #### Required Option
+    - Short: $[Preset]
+    - Long: $[Preset]
+    - Description: Specify the desired capitalization patterns to be used. The script current presets available are:
+    - [$1] - SAMPLE 
+    - [$2] - Sample 
+    - [$3] - saMPle 
+    - [$4] - samplE 
+    - [$5] - sAMPLe 
+    - [$6] - sAMPLE 
+    - [$7] - SAMPle 
+    - [$8] - SamplE 
+    - Example: `-wc $1$2$3$4`
+
 
 ## Connotative Commands
-Commands in this section will connotate words, numbers or characters to words in the base list.
+Commands in this section will connotate words, numbers or characters to words in the production list.
 
 ### CustomInput
 - Short: -ci
 - Long: -CustomInput
-- Description: Allows you to provide a custom list of words. PlingPling will connotate these words to words in the base list and apply transformations as specified.
+- Description: Allows you to provide a custom list of words. PlingPling will connotate these words to words in the production list and apply transformations as specified.
 - Example: `-ci [Path To Wordlist][Other options]`
 
 ### WordPermutation
 - Short: -wp
 - Long: -WordPermutation
-- Description: Enable word permutation mode. PlingPling will generate permutations of words in the base wordlist that a separated by a sepcific delimiter, the default is "_".
+- Description: Enable word permutation mode. PlingPling will generate permutations of words in the production list that a separated by a sepcific delimiter, the default is "_".
 - Example: `-wp [Options]`
 
 ### GenerateDates
 - Short: -gd
 - Long: -GenerateDates
-- Description: Enable date generation mode. PlingPling will generate dates to be connotated to words in the base list based on specified rules.
+- Description: Enable date generation mode. PlingPling will generate dates to be connotated to words in the production list based on specified rules.
 - Example: `-gd [Options]`
+    #### Required Option
+    - Short: &f=
+    - Long: &format=
+    - Description: Specify the date format & range. The command accepts formats in the following way &f=DDMMYYYYR3. You may pass any Combination of DDMMYYYY I.E only DD, MM, YYYY or a combination of them. You may also pass YY which will append the last 2 digits of the year ie DDMMYY = 240617 (24.06.2017). The R parameter determines the range of dates, calculated in years meaning that R2 will provide dates for 2 years. 
+    - Example: `-gd &format=MMYYYYR10`
 
 ### SpecialCharacter
 - Short: -sc
 - Long: -SpecialCharacter
-- Description: Enable special character mode. PlingPling will connotate various special characters to the words in the base worlist based on specified rules.
+- Description: Enable special character mode. PlingPling will connotate various special characters to the words in the production list based on specified rules.
 - Example: `-sc [Options]`
 
 ### NumberLists
 - Short: -nl
 - Long: -NumberLists
-- Description: Enable number lists mode. PlingPling will append specific number patterns to words in base wordlist based on requested patterns.
-- Example: `-nl [Options]`
+- Description: Enable number lists mode. PlingPling will append specific number patterns to words in production list based on requested patterns.
+- Example: `-nl $[Preset]:[Options]`
+    #### Required Option
+    - Short: $[Preset]
+    - Long: $[Preset]
+    - Description: Specify the precompiled lists of integers to be used by the command. Current presets available are listed below. The user is encouraged to view the lists in the NumberLists folder on Github or locally to better understand what lists suit their needs. Custom lists can be added to the CUSTOM.txt document.
+    - [$1] - SEQUENTIAL.txt
+    - [$2] - REVERSE_SEQUENTIAL.txt
+    - [$3] - PURE_NUMBERS.txt
+    - [$4] - BINARIES.txt
+    - [$5] - THOUSANDS.txt
+    - [$6] - REVERSE_THOUSANDS.txt
+    - [$7] - STANDARD.txt
+    - [$8] - RANDOM.txt
+    - [$CUSTOM] - CUSTOM.txt
+    - Example: `-nl $A$D$E$CUSTOM`
+    - Note: Fruther options can be applied to each list by passing a ':' followed by the reqused options, an example of this is `-nl $A:limit=4&position=3&re`
 
+## Command Customization
+The following section contains the way to pass paramaters and rules to the above mentioned commands in order to make a precise and accurate dictionary.
 
+### Position
+- Short: &p=
+- Long: &position=
+- Description: This option determines the postion(s) for any string that will be connotated to a word in the production wordlist.
+- Options: 1(Before), 2(After), 3(Before & After)
+- Example: `-gd &format=YYR10&position=3`
 
+### Recursion
+- Short: &re
+- Long: &recursion
+- Description: This option only works alongside the position option, by calling this option, the position option will call it self recursivly based on the integer (1-3) passed to the position argument. If 3 is the argument passed to the position option then the position option will call itself 3 times to produce word variations with position formats 1, 2, and 3. If 2 is the argument passed to the position option then the produced variations will be with position formats 1 and 2.
+- Example: `-gd &format=YYR10&position=3&recursion`
 
+### Limit
+- Short: &l=
+- Long: &limit=
+- Description: Determines the max length of any string to be connatated to a word in the production wordlist. Accepts an integer argument.
+- Example: `-gd &format=YYR10&limit=5`
+
+### 

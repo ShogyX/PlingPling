@@ -136,22 +136,12 @@ def process_commands(commands_string, base_list, number_list):
     else:
         position_setting = False
 
-    if 'multi_variation' in commands_info or 'mv' in commands_info:
-        try:
-            multi_variation_value = commands_info['mv']
-            if multi_variation_value == "True" or multi_variation_value == "T" or multi_variation_value == "t" or multi_variation_value == "true":
-                mv = True
-            else:
-                mv = False
-        except:
-            multi_variation_value = commands_info['multi_variation']
-            if multi_variation_value == "True" or multi_variation_value == "T" or multi_variation_value == "t" or multi_variation_value == "true":
-                mv = True
-            else:
-                mv = False
+    if 'recursion' in commands_info or 're' in commands_info:
+        mv = True
     else:
         mv = False
-        
+
+    
     if mv == False and position_setting == True:
         
         return_list.extend(append_words(base_list, number_list, str(position_value)))
@@ -176,14 +166,14 @@ def process_commands(commands_string, base_list, number_list):
     
 def map_variable_to_string(variable):
     mapping = {
-        'A': "SEQUENTIAL.txt",
-        'B': "REVERSE_SEQUENTIAL.txt",
-        'C': "PURE_NUMBERS.txt",
-        'D': "BINARIES.txt",
-        'E': "THOUSANDS.txt",
-        'F': "REVERSE_THOUSANDS.txt",
-        'G' : "STANDARD.txt",
-        'H':"RANDOM.txt",
+        '1': "SEQUENTIAL.txt",
+        '2': "REVERSE_SEQUENTIAL.txt",
+        '3': "PURE_NUMBERS.txt",
+        '4': "BINARIES.txt",
+        '5': "THOUSANDS.txt",
+        '6': "REVERSE_THOUSANDS.txt",
+        '7' : "STANDARD.txt",
+        '8':"RANDOM.txt",
         'CUSTOM': "CUSTOM.txt"
     }
 
