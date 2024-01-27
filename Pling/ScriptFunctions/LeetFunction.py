@@ -1,4 +1,4 @@
-from .LeetRules import get_leet_presets, get_single_leet_rule
+from .LeetDicts import get_leet_presets
 from itertools import product
 
 def generate_leet_combinations(word, leet_dict, include_chars=None, exclude_chars=None):
@@ -44,43 +44,34 @@ def handle_leet(input_list, input_string):
     e = True
     i = True
     # Process the list based on the parameters and values
-    if "ru" in params or "rules" in params:
+    if "di" in params or "dict" in params:
         try:
-            preset = params["ru"]
+            preset = params["di"]
         except:
-            preset = params["rules"]
-        preset = get_leet_presets(preset)
-        leet_dict.update(preset)
+            preset = params["dict"]
+        argument = int(preset)
+        leet_dict.update(get_leet_presets(preset))
     
-    if "i" in params or "include" in params:
+    if "w" in params or "whitelist" in params:
         try:
-            include = params["i"]
+            include = params["w"]
         except:
-            include = params["include"]
+            include = params["whitelist"]
         
     else:
         i = False
         
 
-    if "e" in params or "exclude" in params:
+    if "b" in params or "blacklist" in params:
         
         try:
-            exclude = params["e"]
+            exclude = params["b"]
         except:
-            exclude = params["exclude"]
+            exclude = params["blacklist"]
         
     else:
         e = False
         
-
-    if "d" in params or "dict" in params:
-        try:
-            single_dict = params["d"]
-        except:
-            single_dict = params["dict"]
-        single_dict = get_single_leet_rule(single_dict)
-        leet_dict.update(single_dict)
-
     if e == True and i == True:
         
         return_list.extend(generate_all_leet_combinations(input_list, leet_dict, include_chars=include, exclude_chars=exclude))

@@ -170,7 +170,7 @@ def create_list(params_dict):
             except KeyError:
                 custom_option = None
 
-            final_list.extend(handle_custom_input(production_list, custom_option))
+            production_list.extend(handle_custom_input(production_list, custom_option))
             total_words_in_final_list = len(final_list)
 
         elif 'gd' == commands or "generatedates" == commands:
@@ -179,7 +179,7 @@ def create_list(params_dict):
             except KeyError:
                 date_option = None
 
-            final_list.extend(handle_dates(production_list, date_option))
+            production_list.extend(handle_dates(production_list, date_option))
         
         elif 'sc' == commands or "specialcharacter" == commands:
             try:
@@ -187,7 +187,7 @@ def create_list(params_dict):
             except KeyError:
                 sc_option = None
 
-            final_list.extend(handle_special_char(production_list, sc_option))
+            production_list.extend(handle_special_char(production_list, sc_option))
 
         elif 'nl' == commands or "numberlists" == commands:
             try:
@@ -195,7 +195,7 @@ def create_list(params_dict):
             except KeyError:
                 num_option = None
 
-            final_list.extend(handle_number_combos(production_list, num_option))
+            production_list.extend(handle_number_combos(production_list, num_option))
             
 
     complete_list = production_list + final_list

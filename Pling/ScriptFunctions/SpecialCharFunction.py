@@ -19,6 +19,7 @@ def append_words(base_words, words_to_append, position='behind'):
 
     return result_list
 
+
 def handle_special_char(wordlist, option):
     return_list = []
     # Parse the string to extract parameters and values
@@ -29,73 +30,31 @@ def handle_special_char(wordlist, option):
             key, value = pair.split('=')
             params[key] = value
         
-    i = True
-    e = True
-    limit = True
     # Process the list based on the parameters and values
     if "l" in params or "limit" in params:
-        try:
-            limit = params["l"]
-        except:
-            limit = params["limit"]
+        limit = True
+        max_length = int(limit)
     else:
         limit = False
-        
-    if "i" in params or "include" in params:
-        try:
-            include = params["i"]
-        except:
-            include = params["include"]
-        
-    else:
-        i = False
-
-    if "e" in params or "exclude" in params:
-        
-        try:
-            exclude = params["e"]
-        except:
-            exclude = params["exclude"]
-        
-    else:
-        e = False
-
-    char_list = generate_combinations(limit, i, e)
-
-
-    if "p" in params or "position" in params:
-        try:
-            position = params["p"]
-        except:
-            position = params["position"]
-    else:
-        position = '2'
-
-    if "re" in params or "recursion" in params:
-        mv = True
-    else:
-        mv = False
-        
-    if mv == True:
-        return_list = []
-        position = int(position)
-        for x in range(1,position+1):
-            x = str(x)
-            return_list.extend(append_words(wordlist, char_list, x))
-            return_list = list(set(return_list))
-        return return_list
-
-    else:
-        return append_words(wordlist, char_list, position)
-
-def generate_combinations(max_length, include, exclude):
-    if max_length == False:
         max_length = 3
-    if include == False:
-        include="!?@%=._#123456789"
-    if exclude == False:
+        
+    if "w" in params or "whitelist" in params:
+        try:
+            include = params["w"]
+        except:
+            include = params["whitelist"]
+    else:
+        include="!?@%=._#-*&|<>[]()\}{/£¤\"',§:;123456789"
+        
+
+    if "b" in params or "blacklist" in params:
+        try:
+            exclude = params["b"]
+        except:
+            exclude = params["blacklist"]
+    else:
         exclude = None
-    max_length = int(max_length)
+
     all_characters = string.digits + string.punctuation
     characters = all_characters
 
@@ -118,7 +77,32 @@ def generate_combinations(max_length, include, exclude):
 
         # Append valid combinations to the result list
         combinations.extend(valid_combos)
-    combinations = list(set(combinations))
-    return combinations
+
+    char_list = list(set(combinations))
+
+    if "p" in params or "position" in params:
+        try:
+            position = params["p"]
+        except:
+            position = params["position"]
+    else:
+        position = '2'
+
+    if "re" in params or "recursion" in params:
+        mv = True
+    else:
+        mv = False
+        
+    if mv == True:
+        return_list = []
+        position = int(position)
+        for x in range(1,position+1):
+            x = str(x)
+            return_list.extend(append_words(wordlist, char_list, x))
+            return_list = list(set(return_list))
+        return return_list
+    else:
+        return append_words(wordlist, char_list, position)
+
 
 
