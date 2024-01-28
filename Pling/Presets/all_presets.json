@@ -1,12 +1,2 @@
 {
-  "AllOptions": "RUN -wl [PATH] -op [PATH] -ci &f=[PATH] -dg &f=YYR10&p=3&mv=t -nl $A$B$C$D$E$F$G -wc &1&2&3&4&5&6&7&8 -rw -wp -lm &p=0",
-  "DateOptions": "RUN -wl [PATH] -dg &f=YYR10&p=3&mv=t",
-  "NumberOptions": "RUN -wl [PATH] -nl $A$B$C$D$E$F$G",
-  "LeetOptions": "RUN -wl [PATH] -lm &p=0",
-  "CustomInputOptions": "RUN -wl [PATH] -ci &f=[PATH]",
-  "CapitalizationOptions": "RUN -wl [PATH] -wc &1&2&3&4&5&6&7&8",
-  "WordPremutationOptions": "RUN -wl [PATH] -wp",
-  "ReverseOptions": "RUN -wl [PATH] -rw",
-  "OutputOptions": "RUN -wl [PATH] -op [PATH]",
-  "SpecialCharacterOptions": "RUN -wl [PATH] -sc"
 }
