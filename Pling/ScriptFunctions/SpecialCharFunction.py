@@ -27,9 +27,11 @@ def handle_special_char(wordlist, option):
     if option != None:
         param_pairs = option.split('&')[1:]
         for pair in param_pairs:
-            key, value = pair.split('=')
-            params[key] = value
-        
+            try:
+                key, value = pair.split('=')
+                params[key] = value
+            except ValueError:
+                print(pair)
     # Process the list based on the parameters and values
     if "l" in params or "limit" in params:
         limit = True

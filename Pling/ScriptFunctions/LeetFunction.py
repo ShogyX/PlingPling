@@ -50,7 +50,7 @@ def handle_leet(input_list, input_string):
         except:
             preset = params["dict"]
         argument = int(preset)
-        leet_dict.update(get_leet_presets(preset))
+        leet_dict.update(get_leet_presets(argument))
     
     if "w" in params or "whitelist" in params:
         try:

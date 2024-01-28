@@ -172,8 +172,8 @@ def map_variable_to_string(variable):
         '4': "BINARIES.txt",
         '5': "THOUSANDS.txt",
         '6': "REVERSE_THOUSANDS.txt",
-        '7' : "STANDARD.txt",
-        '8':"RANDOM.txt",
+        '7': "STANDARD.txt",
+        '8': "RANDOM.txt",
         'CUSTOM': "CUSTOM.txt"
     }
 
@@ -181,7 +181,7 @@ def map_variable_to_string(variable):
 
 def handle_number_combos(wordlist, command_string):
     result_list = []
-    path = "NumberLists\\"
+    path = "Pling\\NumberLists\\"
     for option in command_string.split("$"):
         if len(option) < 1:
             continue

@@ -87,7 +87,9 @@ def process_commands(commands_string, base_list):
         date_list = read_files_as_list(file_paths)
         
     else:
+        
         print("No file argument or incorrect file argument. Program is skipping this step")
+        return []
 
 
     if 'position' in commands_info or 'p' in commands_info:

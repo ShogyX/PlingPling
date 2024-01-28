@@ -10,8 +10,11 @@ def generate_dates(format_and_ranges, date_range = ""):
         for format_and_range in format_and_ranges:
             try:
                 # Split the input into format and range
-                if 'R' in format_and_range:
-                    format_part, range_part = format_and_range.split('R')
+                if 'R' in format_and_range or 'r' in format_and_range:
+                    try:
+                        format_part, range_part = format_and_range.split('R')
+                    except:
+                        format_part, range_part = format_and_range.split('r')
                     if ':' in range_part:
                         start_year, end_year = map(int, range_part.split(':'))
                         range_years = range(start_year, end_year + 1)
@@ -21,7 +24,7 @@ def generate_dates(format_and_ranges, date_range = ""):
                     format_part = format_and_range
                     range_part = '1'
                     range_years = range(current_date.year - int(range_part), current_date.year)
-
+                format_part = format_part.upper()
                 # Validate the format
                 placeholders = ['DD', 'MM', 'YYYY', 'YY', "DDMM", "MMDD", "MMYY", "MMYYYY", "DDYY", "DDYYYY", "DDMMYY", "YYMMDD", "YYDDMM"]
                 placeholder_present = any(placeholder in format_part for placeholder in placeholders)
