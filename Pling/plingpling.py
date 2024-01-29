@@ -5,6 +5,19 @@ from colorama import Fore, Style
 import json
 import re
 
+plingpling = """ 
++-----------------------------------------------------+    
+|     ____  ___                ____  ___              |
+|    / __ \/ (_)___  ____ _   / __ \/ (_)___  ____ _  |
+|   / /_/ / / / __ \/ __ `/  / /_/ / / / __ \/ __ `/  |
+|  / ____/ / / / / / /_/ /  / ____/ / / / / / /_/ /   |
+| /_/   /_/_/_/ /_/\__, /  /_/   /_/_/_/ /_/\__, /    |
+|                 /____/                   /____/     |
++-----------------------------------------------------+
+  Created by Shogy
+  Github: https://github.com/ShogyX/PlingPling
+"""
+
 def process_input(input_str):
     # Convert to lowercase, remove extra spaces
     cleaned_input = re.sub(r'\s+', ' ', input_str.lower().strip())
@@ -156,25 +169,8 @@ def clear_console():
         os.system('clear')
 
 def main():
-    
-    plingpling = """ 
-
-
-+-----------------------------------------------------+    
-|     ____  ___                ____  ___              |
-|    / __ \/ (_)___  ____ _   / __ \/ (_)___  ____ _  |
-|   / /_/ / / / __ \/ __ `/  / /_/ / / / __ \/ __ `/  |
-|  / ____/ / / / / / /_/ /  / ____/ / / / / / /_/ /   |
-| /_/   /_/_/_/ /_/\__, /  /_/   /_/_/_/ /_/\__, /    |
-|                 /____/                   /____/     |
-+-----------------------------------------------------+
-  Created by [creator]   |   Twitter: [Twitter Link]
-                         |   Github:  [Github Link]
-
-Type 'help' for instructions.
-"""
-
     print_colored_plingpling(plingpling)
+    print("Type 'help' for instructions.")
     keywords = []
     while True:
         user_input = input("Enter a command (type 'q' to exit): ")
@@ -252,5 +248,18 @@ Type 'help' for instructions.
             if user_input.lower() in keywords:
                 pass
 
-if __name__ == "__main__":
-    main()
+
+# Check if command-line arguments are provided prior to execution
+if len(sys.argv) > 1:
+    print_colored_plingpling(plingpling)
+    command = sys.argv[1:]
+    word_list_path = None
+    custom_word_list_path = None
+    out_path = None
+    result_string = " ".join(command)
+    command = result_string.lower()
+    command_status = recieve_command(command, word_list_path, custom_word_list_path, out_path)
+    print(command_status)
+else:
+    if __name__ == "__main__":
+        main()
